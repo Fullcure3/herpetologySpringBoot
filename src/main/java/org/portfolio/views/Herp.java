@@ -6,10 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "herpetology_webpage")
-//@NamedStoredProcedureQuery(name = "test", procedureName = "getMatchingHerps", parameters = {
-//        @StoredProcedureParameter(name = "commonName", type = String.class),
-//        @StoredProcedureParameter(name = "habitat", type = String.class)
-//})
 public class Herp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

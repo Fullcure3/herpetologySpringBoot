@@ -22,11 +22,7 @@ public class HerpController {
     public ModelAndView mainPage(
             @RequestParam(name = "commonName") String commonName,
             @RequestParam(name = "habitat") String habitat, ModelAndView modelAndView) {
-//        var all = repository.findAll();
-//        List<Herp> herps = repository.getHerpsByCommonNameContainsAndTypeContains(commonName, habitat);
         var herps = herpService.getListOfHerps(commonName, habitat);
-//        var herps = repository.findAll();
-//        var herps = herpService.getListOfHerps("sala", "ter");
         modelAndView.setViewName("herpetology");
         modelAndView.addObject("herps", herps);
         return modelAndView;

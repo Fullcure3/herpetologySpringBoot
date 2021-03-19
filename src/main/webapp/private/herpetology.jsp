@@ -30,7 +30,7 @@ Welcome to Herpetology <form action="/logout" method="get">
     <label for="all">All</label><br>
     <input type="submit"/>
 </form>
-<form action="/undo" method="get">
+<form action="undo" method="get">
     <input type="submit" value="Undo"/>
 </form>
 <c:forEach var="herp" items="${herps}">

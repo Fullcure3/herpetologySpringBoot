@@ -22,7 +22,12 @@ public class LoginController {
             @RequestParam(name = "username") String username,
             @RequestParam(name = "password") String password,
             ModelAndView modelAndView) {
-        modelAndView.setViewName(loginService.isValidUser(username, password) ? "herpetology" : "login");
+
+        redirectUserToWebpage(username, password, modelAndView);
         return modelAndView;
+    }
+
+    private void redirectUserToWebpage(String username, String password, ModelAndView modelAndView) {
+        modelAndView.setViewName(loginService.isValidUser(username, password) ? "herpetology" : "login");
     }
 }

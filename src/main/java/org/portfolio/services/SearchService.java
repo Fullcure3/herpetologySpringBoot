@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-
 public class SearchService implements HerpService {
     private HerpRepository repository;
+    private List<Herp> herpList;
 
     @Autowired
     public SearchService(HerpRepository repository) {
@@ -18,7 +18,15 @@ public class SearchService implements HerpService {
     }
 
     @Override
-    public List<Herp> getListOfHerps(String commonName, String habitat) {
-        return repository.getMatchingHerps(commonName, habitat);
+    public void getListOfHerps(String commonName, String habitat) {
+        herpList = repository.getMatchingHerps(commonName, habitat);
+    }
+
+    public List<Herp> getHerpList() {
+        return herpList;
+    }
+
+    public void setHerpList(List<Herp> herpList) {
+        this.herpList = herpList;
     }
 }

@@ -1,7 +1,6 @@
 package org.portfolio.services;
 
 import org.portfolio.dao.UserRepository;
-import org.portfolio.views.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

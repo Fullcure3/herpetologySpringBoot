@@ -18,8 +18,9 @@ public class SearchService implements HerpService {
     }
 
     @Override
-    public void getListOfHerps(String commonName, String habitat) {
+    public List<Herp> getListOfHerps(String commonName, String habitat) {
         herpList = repository.getMatchingHerps(commonName, habitat);
+        return herpList;
     }
 
     public List<Herp> getHerpList() {

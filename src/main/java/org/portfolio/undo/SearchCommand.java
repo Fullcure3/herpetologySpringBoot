@@ -26,12 +26,9 @@ public class SearchCommand implements UndoableCommand{
 
 
     @Override
-    public void execute(String commonName, String habitat) {
-//        var searchCommand = new SearchCommand(service, history);
-//        searchCommand.herps = herps;
+    public void execute() {
         herps = service.getHerpList();
         history.push(this);
-        service.getListOfHerps(commonName, habitat);
     }
 
     @Override

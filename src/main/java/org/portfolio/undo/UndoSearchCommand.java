@@ -15,7 +15,7 @@ public class UndoSearchCommand implements Command{
     }
 
     @Override
-    public void execute(String commonName, String habitat) {
+    public void execute() {
         if(!history.isEmpty())
             history.pop().unexecute();
     }

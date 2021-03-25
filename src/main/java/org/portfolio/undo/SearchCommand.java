@@ -1,7 +1,7 @@
 package org.portfolio.undo;
 
 import org.portfolio.services.SearchService;
-import org.portfolio.views.Herp;
+import org.portfolio.views.HerpView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -14,7 +14,7 @@ import java.util.List;
 @Scope(value = "prototype", proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Qualifier(value = "search")
 public class SearchCommand implements UndoableCommand{
-    private List<Herp> herps;
+    private List<HerpView> herpViews;
     private SearchService service;
     private SearchHistory history;
 
@@ -27,12 +27,12 @@ public class SearchCommand implements UndoableCommand{
 
     @Override
     public void execute() {
-        herps = service.getHerpList();
+        herpViews = service.getHerpList();
         history.push(this);
     }
 
     @Override
     public void unexecute() {
-        service.setHerpList(herps);
+        service.setHerpList(herpViews);
     }
 }

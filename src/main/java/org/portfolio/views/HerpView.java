@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "herpetology_webpage")
-public class Herp {
+public class HerpView {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "herp_id")
@@ -20,7 +20,7 @@ public class Herp {
     private String species;
     private String type;
 
-    public Herp() {
+    public HerpView() {
     }
 
     public int getHerpID() {

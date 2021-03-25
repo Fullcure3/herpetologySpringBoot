@@ -1,7 +1,7 @@
 package org.portfolio.services;
 
 import org.portfolio.dao.HerpRepository;
-import org.portfolio.views.Herp;
+import org.portfolio.views.HerpView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class SearchService implements HerpService {
     private HerpRepository repository;
-    private List<Herp> herpList;
+    private List<HerpView> herpViewList;
 
     @Autowired
     public SearchService(HerpRepository repository) {
@@ -18,16 +18,16 @@ public class SearchService implements HerpService {
     }
 
     @Override
-    public List<Herp> getListOfHerps(String commonName, String habitat) {
-        herpList = repository.getMatchingHerps(commonName, habitat);
-        return herpList;
+    public List<HerpView> getListOfHerps(String commonName, String habitat) {
+        herpViewList = repository.getMatchingHerps(commonName, habitat);
+        return herpViewList;
     }
 
-    public List<Herp> getHerpList() {
-        return herpList;
+    public List<HerpView> getHerpList() {
+        return herpViewList;
     }
 
-    public void setHerpList(List<Herp> herpList) {
-        this.herpList = herpList;
+    public void setHerpList(List<HerpView> herpViewList) {
+        this.herpViewList = herpViewList;
     }
 }

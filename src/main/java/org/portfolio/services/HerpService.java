@@ -1,9 +1,9 @@
 package org.portfolio.services;
 
-import org.portfolio.views.Herp;
+import org.portfolio.views.HerpView;
 
 import java.util.List;
 
 public interface HerpService {
-    List<Herp> getListOfHerps(String commonName, String habitat);
+    List<HerpView> getListOfHerps(String commonName, String habitat);
 }

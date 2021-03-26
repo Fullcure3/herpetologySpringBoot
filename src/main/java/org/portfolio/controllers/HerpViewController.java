@@ -1,4 +1,4 @@
-package org.portfolio.herpetology;
+package org.portfolio.controllers;
 
 import org.portfolio.services.SearchService;
 import org.portfolio.undo.Command;
@@ -14,15 +14,15 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-public class HerpController {
+public class HerpViewController {
     private SearchService herpService;
     private Command undoCommand;
     private UndoableCommand searchCommand;
 
     @Autowired
-    public HerpController(SearchService herpService,
-                          @Qualifier(value = "undoSearch") Command undoCommand,
-                          @Qualifier(value = "search") UndoableCommand searchCommand) {
+    public HerpViewController(SearchService herpService,
+                              @Qualifier(value = "undoSearch") Command undoCommand,
+                              @Qualifier(value = "search") UndoableCommand searchCommand) {
         this.herpService = herpService;
         this.undoCommand = undoCommand;
         this.searchCommand = searchCommand;

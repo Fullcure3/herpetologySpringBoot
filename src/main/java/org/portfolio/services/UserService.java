@@ -2,9 +2,9 @@ package org.portfolio.services;
 
 import org.portfolio.dao.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class UserService implements LoginService {
 
     private UserRepository repository;

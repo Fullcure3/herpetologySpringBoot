@@ -1,4 +1,4 @@
-package org.portfolio.herpetology;
+package org.portfolio.controllers;
 
 import org.portfolio.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;

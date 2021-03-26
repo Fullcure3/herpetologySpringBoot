@@ -1,8 +1,12 @@
 package org.portfolio.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.List;
-
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "genus_id")
 @Entity
 @Table(name = "genuses")
 public class Genus {
@@ -13,6 +17,7 @@ public class Genus {
 
     @OneToMany(mappedBy = "genus")
     private List<Classification> classifications;
+
     public Genus() {
     }
 

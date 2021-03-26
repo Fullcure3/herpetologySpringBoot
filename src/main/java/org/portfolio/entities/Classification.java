@@ -1,7 +1,11 @@
 package org.portfolio.entities;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import javax.persistence.*;
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "classification_id")
 @Entity
 @Table(name = "classifications")
 public class Classification {

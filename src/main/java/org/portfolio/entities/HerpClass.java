@@ -1,8 +1,12 @@
 package org.portfolio.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.List;
 
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "class_id")
 @Entity
 @Table(name = "classes")
 public class HerpClass {

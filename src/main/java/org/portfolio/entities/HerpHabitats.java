@@ -9,10 +9,12 @@ import java.util.Objects;
 public class HerpHabitats implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int herp_id;
+    @Column(name = "herp_id")
+    private int herpId;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int habitat_id;
+    @Column(name = "habitat_id")
+    private int habitatId;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "habitat_id")
@@ -25,20 +27,20 @@ public class HerpHabitats implements Serializable {
     public HerpHabitats() {
     }
 
-    public int getHerp_id() {
-        return herp_id;
+    public int getHerpId() {
+        return herpId;
     }
 
-    public void setHerp_id(int herp_id) {
-        this.herp_id = herp_id;
+    public void setHerpId(int herp_id) {
+        this.herpId = herp_id;
     }
 
-    public int getHabitat_id() {
-        return habitat_id;
+    public int getHabitatId() {
+        return habitatId;
     }
 
-    public void setHabitat_id(int habitat_id) {
-        this.habitat_id = habitat_id;
+    public void setHabitatId(int habitat_id) {
+        this.habitatId = habitat_id;
     }
 
     public Habitat getHabitat() {
@@ -62,11 +64,11 @@ public class HerpHabitats implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HerpHabitats that = (HerpHabitats) o;
-        return herp_id == that.herp_id && habitat_id == that.habitat_id && habitat.equals(that.habitat) && herp.equals(that.herp);
+        return herpId == that.herpId && habitatId == that.habitatId && habitat.equals(that.habitat) && herp.equals(that.herp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(herp_id, habitat_id, habitat, herp);
+        return Objects.hash(herpId, habitatId, habitat, herp);
     }
 }

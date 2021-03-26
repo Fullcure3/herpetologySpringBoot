@@ -1,24 +1,26 @@
 package org.portfolio.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.List;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "herp_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "herpId")
 @Entity
 @Table(name = "herps")
 public class Herp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int herp_id;
+    @Column(name = "herp_id")
+    private int herpId;
     @Column(name = "common_name")
     private String commonName;
     @Column(name = "mating_ritual")
     private String matingRitual;
-
 
     @OneToOne
     @JoinColumn(name = "classification_id")
@@ -30,12 +32,12 @@ public class Herp {
     public Herp() {
     }
 
-    public int getHerp_id() {
-        return herp_id;
+    public int getHerpId() {
+        return herpId;
     }
 
-    public void setHerp_id(int herp_id) {
-        this.herp_id = herp_id;
+    public void setHerpId(int herp_id) {
+        this.herpId = herp_id;
     }
 
     public String getCommonName() {

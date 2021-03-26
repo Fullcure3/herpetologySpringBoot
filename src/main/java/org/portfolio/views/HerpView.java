@@ -1,7 +1,5 @@
 package org.portfolio.views;
 
-import org.springframework.data.jpa.repository.query.JpaQueryCreator;
-
 import javax.persistence.*;
 
 @Entity

@@ -6,14 +6,15 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 import java.util.List;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "class_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "classId")
 @Entity
 @Table(name = "classes")
 public class HerpClass {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int class_id;
+    @Column(name = "class_id")
+    private int classId;
     @Column(name = "class")
     private String className;
 
@@ -22,12 +23,12 @@ public class HerpClass {
     public HerpClass() {
     }
 
-    public int getClass_id() {
-        return class_id;
+    public int getClassId() {
+        return classId;
     }
 
-    public void setClass_id(int class_id) {
-        this.class_id = class_id;
+    public void setClassId(int class_id) {
+        this.classId = class_id;
     }
 
     public String getClassName() {

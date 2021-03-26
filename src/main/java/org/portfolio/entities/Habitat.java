@@ -1,18 +1,20 @@
 package org.portfolio.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.List;
 
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "habitat_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "habitatId")
 @Entity
 @Table(name = "habitats")
 public class Habitat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int habitat_id;
+    @Column(name = "habitat_id")
+    private int habitatId;
     private String type;
     private String description;
 
@@ -21,12 +23,12 @@ public class Habitat {
     public Habitat() {
     }
 
-    public int getHabitat_id() {
-        return habitat_id;
+    public int getHabitatId() {
+        return habitatId;
     }
 
-    public void setHabitat_id(int habitat_id) {
-        this.habitat_id = habitat_id;
+    public void setHabitatId(int habitat_id) {
+        this.habitatId = habitat_id;
     }
 
     public String getType() {

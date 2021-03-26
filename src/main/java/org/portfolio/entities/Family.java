@@ -1,17 +1,19 @@
 package org.portfolio.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.List;
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "family_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "familyId")
 @Entity
 @Table(name = "families")
 public class Family {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int family_id;
+    @Column(name = "family_id")
+    private int familyId;
     private String family;
 
     @OneToMany(mappedBy = "family")
@@ -20,12 +22,12 @@ public class Family {
     public Family() {
     }
 
-    public int getFamily_id() {
-        return family_id;
+    public int getFamilyId() {
+        return familyId;
     }
 
-    public void setFamily_id(int family_id) {
-        this.family_id = family_id;
+    public void setFamilyId(int family_id) {
+        this.familyId = family_id;
     }
 
     public String getFamily() {

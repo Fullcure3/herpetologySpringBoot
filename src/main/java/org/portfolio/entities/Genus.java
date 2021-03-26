@@ -6,13 +6,15 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.List;
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "genus_id")
+
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "genusId")
 @Entity
 @Table(name = "genuses")
 public class Genus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int genus_id;
+    @Column(name = "genus_id")
+    private int genusId;
     private String genus;
 
     @OneToMany(mappedBy = "genus")
@@ -21,12 +23,12 @@ public class Genus {
     public Genus() {
     }
 
-    public int getGenus_id() {
-        return genus_id;
+    public int getGenusId() {
+        return genusId;
     }
 
-    public void setGenus_id(int genus_id) {
-        this.genus_id = genus_id;
+    public void setGenusId(int genus_id) {
+        this.genusId = genus_id;
     }
 
     public String getGenus() {

@@ -5,15 +5,15 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "classification_id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "classificationId")
 @Entity
 @Table(name = "classifications")
 public class Classification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int classification_id;
+    @Column(name = "classification_id")
+    private int classificationId;
     private String species;
-
 
     @ManyToOne
     @JoinColumn(name = "class_id")
@@ -30,12 +30,12 @@ public class Classification {
     public Classification() {
     }
 
-    public int getClassification_id() {
-        return classification_id;
+    public int getClassificationId() {
+        return classificationId;
     }
 
-    public void setClassification_id(int classification_id) {
-        this.classification_id = classification_id;
+    public void setClassificationId(int classification_id) {
+        this.classificationId = classification_id;
     }
 
     public String getSpecies() {

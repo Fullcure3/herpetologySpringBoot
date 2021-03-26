@@ -1,7 +1,7 @@
 package org.portfolio.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -17,6 +17,7 @@ public class Genus {
     private int genusId;
     private String genus;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "genus")
     private List<Classification> classifications;
 

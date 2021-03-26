@@ -2,6 +2,7 @@ package org.portfolio.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "herps_habitats")
@@ -56,4 +57,16 @@ public class HerpHabitats implements Serializable {
         this.herp = herp;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HerpHabitats that = (HerpHabitats) o;
+        return herp_id == that.herp_id && habitat_id == that.habitat_id && habitat.equals(that.habitat) && herp.equals(that.herp);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(herp_id, habitat_id, habitat, herp);
+    }
 }

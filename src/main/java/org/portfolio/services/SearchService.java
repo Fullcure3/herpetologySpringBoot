@@ -1,6 +1,6 @@
 package org.portfolio.services;
 
-import org.portfolio.dao.HerpRepository;
+import org.portfolio.dao.HerpViewRepository;
 import org.portfolio.views.HerpView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -9,11 +9,11 @@ import java.util.List;
 
 @Component
 public class SearchService implements HerpService {
-    private HerpRepository repository;
+    private HerpViewRepository repository;
     private List<HerpView> herpViewList;
 
     @Autowired
-    public SearchService(HerpRepository repository) {
+    public SearchService(HerpViewRepository repository) {
         this.repository = repository;
     }
 

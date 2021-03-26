@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface HerpRepository extends CrudRepository<HerpView, Integer> {
+public interface HerpViewRepository extends CrudRepository<HerpView, Integer> {
 
     @Query(nativeQuery = true, value = "CALL getMatchingHerps(:commonName, :habitat)")
     List<HerpView> getMatchingHerps(String commonName, String habitat);

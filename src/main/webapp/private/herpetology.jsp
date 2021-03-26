@@ -64,7 +64,7 @@
             <label for="all">Fossorial</label>
             <input type="radio" id="all" value="[a-z]|[A-Z]" name="habitat"/>
             <label for="all">All</label><br>
-            <input type="submit"/>
+            <input type="submit" value="Search"/>
         </form>
         <form action="undo" method="get">
             <input type="submit" value="Undo"/>

@@ -18,17 +18,11 @@ public class ClassificationService {
         this.repository = repository;
     }
 
-    public Page<ClassificationView> getClassifications(ClassificationViewPage classificationViewPage){
-        Pageable page = createPage(classificationViewPage);
-        return repository.findAll(page);
+    public Page<ClassificationView> getClassifications(){
+        return repository.findAll(ClassificationViewPage.getPage());
     }
 
-    private Pageable createPage(ClassificationViewPage classificationViewPage) {
-        Sort sort = Sort.by(classificationViewPage.getSortDirection(), classificationViewPage.getSortBy());
-        Pageable page = PageRequest.of(classificationViewPage.getPageNumber(),
-                classificationViewPage.getPageSize(), sort);
-        return page;
-    }
+
 
 
 }

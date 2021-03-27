@@ -21,8 +21,8 @@ public class ClassificationRestController {
     }
 
     @GetMapping(value = "/pages")
-    public ResponseEntity<Page<ClassificationView>> getClassifications(ClassificationViewPage classificationViewPage) {
-        return new ResponseEntity<>(service.getClassifications(classificationViewPage), HttpStatus.OK);
+    public ResponseEntity<Page<ClassificationView>> getClassifications() {
+        return new ResponseEntity<>(service.getClassifications(), HttpStatus.OK);
     }
 
 }

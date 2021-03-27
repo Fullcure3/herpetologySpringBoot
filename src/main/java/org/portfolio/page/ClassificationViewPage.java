@@ -1,12 +1,19 @@
 package org.portfolio.page;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 public class ClassificationViewPage {
-    private int pageNumber = 0;
-    private int pageSize = 10;
-    private Sort.Direction sortDirection = Sort.Direction.ASC;
-    private String sortBy = "commonName";
+    private static int pageNumber = 0;
+    private static int pageSize = 10;
+    private static Sort.Direction sortDirection = Sort.Direction.ASC;
+    private static String sortBy = "commonName";
+
+    public static Pageable getPage() {
+        var sort = Sort.by(sortDirection, sortBy);
+        return PageRequest.of(pageNumber, pageSize, sort);
+    }
 
     public int getPageNumber() {
         return pageNumber;

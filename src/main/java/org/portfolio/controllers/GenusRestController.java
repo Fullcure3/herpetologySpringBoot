@@ -4,12 +4,13 @@ import org.portfolio.entities.Genus;
 import org.portfolio.services.GenusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "api/genus")
+@RequestMapping(path = "api/genus")
 public class GenusRestController {
     private GenusService service;
     private int pageOffset = 1;
@@ -20,6 +21,7 @@ public class GenusRestController {
     }
 
     @DeleteMapping(value = "/{genusId}")
+    @PreAuthorize(value = "hasAuthority('genus:delete')")
     public ResponseEntity<Genus> deleteCustomer(@PathVariable(name = "genusId") Integer genusId){
         try{
             var genus = service.deleteGenus(genusId);
@@ -30,6 +32,7 @@ public class GenusRestController {
     }
 
     @PutMapping(value = "/{genusId}")
+    @PreAuthorize(value = "hasAuthority('genus:write')")
     public ResponseEntity<Genus> updateGenus(
             @PathVariable(name = "genusId") Integer genusId,
             @RequestBody Genus genus) {
@@ -38,12 +41,14 @@ public class GenusRestController {
     }
 
     @PostMapping(value = "/add")
+    @PreAuthorize(value = "hasAuthority('genus:write')")
     public ResponseEntity<Genus> addGenus(@RequestBody Genus genus) {
         service.addGenus(genus);
         return ResponseEntity.ok(genus);
     }
 
     @GetMapping(value = "/all")
+    @PreAuthorize(value = "hasAuthority('genus:read')")
     public Iterable<Genus> getAllGenuses() {
         return service.getGenuses();
     }
@@ -55,8 +60,8 @@ public class GenusRestController {
         return service.getGenusesByPage(pageNumber - pageOffset, limit);
     }
 
-    @GetMapping(value = "/id")
-    public List<Genus> getByGenusId(int id) {
+    @GetMapping(value = "/{genusId}")
+    public List<Genus> getByGenusId(@RequestParam(name = "genusId", defaultValue = "1") int id) {
         return service.getGenusbyId(id);
     }
 }

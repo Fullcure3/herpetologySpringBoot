@@ -5,9 +5,6 @@ import org.portfolio.page.ClassificationViewPage;
 import org.portfolio.views.ClassificationView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,8 +15,8 @@ public class ClassificationService {
         this.repository = repository;
     }
 
-    public Page<ClassificationView> getClassifications(){
-        return repository.findAll(ClassificationViewPage.getPage());
+    public Page<ClassificationView> getClassifications(int pageNumber, int pageSize){
+        return repository.findAll(ClassificationViewPage.getPage(pageNumber, pageSize));
     }
 
 

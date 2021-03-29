@@ -3,17 +3,21 @@ package org.portfolio.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import static org.portfolio.security.ApplicationUserRole.ADMIN;
+import static org.portfolio.security.ApplicationUserRole.GUEST;
+
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     private PasswordEncoder passwordEncoder;
 
@@ -24,9 +28,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/", "index", "/api/genus/all")
-                .permitAll()
+        http.csrf().disable()
+                .authorizeRequests()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -39,13 +42,16 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         var userDetailsChris = User.builder()
                 .username("Chris")
                 .password(passwordEncoder.encode("admin"))
-                .roles("ADMIN")
+//                .roles(ADMIN.name())
+                .authorities(ADMIN.getGrantedAuthorities())
                 .build();
+
 
         var userDetailsGuest = User.builder()
                 .username("guest")
                 .password(passwordEncoder.encode("temp"))
-                .roles("USER")
+                .authorities(GUEST.getGrantedAuthorities())
+//                .roles(GUEST.name())
                 .build();
         return new InMemoryUserDetailsManager(userDetailsChris, userDetailsGuest);
     }

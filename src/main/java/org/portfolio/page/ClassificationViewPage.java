@@ -10,7 +10,7 @@ public class ClassificationViewPage {
     private static Sort.Direction sortDirection = Sort.Direction.ASC;
     private static String sortBy = "commonName";
 
-    public static Pageable getPage() {
+    public static Pageable getPage(int pageNumber, int pageSize) {
         var sort = Sort.by(sortDirection, sortBy);
         return PageRequest.of(pageNumber, pageSize, sort);
     }

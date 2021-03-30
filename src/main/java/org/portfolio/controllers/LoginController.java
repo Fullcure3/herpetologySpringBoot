@@ -3,6 +3,7 @@ package org.portfolio.controllers;
 import org.portfolio.services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,17 +18,18 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @PostMapping(value = "login")
-    public ModelAndView login(
-            @RequestParam(name = "username") String username,
-            @RequestParam(name = "password") String password,
-            ModelAndView modelAndView) {
-
-        redirectUserToWebpage(username, password, modelAndView);
-        return modelAndView;
+    @GetMapping(value = "/login")
+    public String login2() {
+        return "login";
     }
 
-    private void redirectUserToWebpage(String username, String password, ModelAndView modelAndView) {
-        modelAndView.setViewName(loginService.isValidUser(username, password) ? "herpetology" : "login");
+    @GetMapping(value = "/herps")
+    public String herpMainPage() {
+        return "herpetology";
+    }
+
+    @PostMapping(value = "/logout")
+    public String logout() {
+        return "login";
     }
 }

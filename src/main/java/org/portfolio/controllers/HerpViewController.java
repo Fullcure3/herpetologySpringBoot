@@ -29,14 +29,14 @@ public class HerpViewController {
     }
 
 
-    @GetMapping(value = "herpetology")
+    @GetMapping(value = "/herpetology")
     public ModelAndView mainPage(
             @RequestParam(name = "commonName") String commonName,
             @RequestParam(name = "habitat") String habitat, ModelAndView modelAndView) {
         return loadHerpView(modelAndView, getHerpSearch(commonName, habitat));
     }
 
-    @GetMapping(value = "undo")
+    @GetMapping(value = "/undo")
     public ModelAndView undo(ModelAndView modelAndView){
         return loadHerpView(modelAndView, previousHerpSearch());
     }

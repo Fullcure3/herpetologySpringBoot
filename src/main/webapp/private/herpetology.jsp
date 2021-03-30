@@ -23,7 +23,9 @@
 
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
     <div class="w3-display-topright w3-padding-large w3-xlarge">
-
+        <form action="/logout" method="post">
+            <input type="submit" value="Logout"/>
+        </form>
     </div>
     <div class="w3-display-middle">
         <h1 class="w3-large w3-animate-top">
@@ -54,7 +56,7 @@
         <p class="w3-large w3-center">John Steffen</p>
     </div>
     <div class="w3-display-topleft w3-padding-large">
-        <form action="herpetology" method="get">
+        <form action="/herpetology" method="get">
             Enter common name : <input type="text" name="commonName" required/><br>
             Enter habitat : <input type="radio" id="aquatic" value="aquatic" name="habitat" required>
             <label for="aquatic">Aquatic</label>
@@ -66,7 +68,7 @@
             <label for="all">All</label><br>
             <input type="submit" value="Search"/>
         </form>
-        <form action="undo" method="get">
+        <form action="/undo" method="get">
             <input type="submit" value="Undo"/>
         </form>
     </div>

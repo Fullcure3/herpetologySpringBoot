@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <title>Herpetology Database</title>
@@ -23,10 +24,42 @@
         <h1 class="w3-jumbo w3-animate-top">Welcome To Herpetology</h1>
         <hr class="w3-border-grey" style="margin:auto;width:40%">
         <p class="w3-large w3-center">
-        <form action="login" method="post">
-            Username: <input type="text" name="username" maxlength="20" required/><br>
-            Password : <input type="password" name="password" maxlength="20" required/><br>
-            <input type="submit" value="Login"/>
+            <c:url value="/login" var="loginProcessingUrl"/>
+        <form action="${loginProcessingUrl}" method="post">
+            <fieldset>
+                <legend>Please Login</legend>
+                <!-- use param.error assuming FormLoginConfigurer#failureUrl contains the query parameter error -->
+                <c:if test="${param.error != null}">
+                    <div>
+                        Failed to login.
+                        <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
+                            Reason: <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
+                        </c:if>
+                    </div>
+                </c:if>
+                <!-- the configured LogoutConfigurer#logoutSuccessUrl is /login?logout and contains the query param logout -->
+                <c:if test="${param.logout != null}">
+                    <div>
+                        You have been logged out.
+                    </div>
+                </c:if>
+                <p>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username"/>
+                </p>
+                <p>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password"/>
+                </p>
+                <!-- if using RememberMeConfigurer make sure remember-me matches RememberMeConfigurer#rememberMeParameter -->
+                <p>
+                    <label for="remember-me">Remember Me?</label>
+                    <input type="checkbox" id="remember-me" name="remember-me"/>
+                </p>
+                <div>
+                    <button type="submit" class="btn">Log in</button>
+                </div>
+            </fieldset>
         </form>
         </p>
     </div>

@@ -1,31 +1,32 @@
 package org.portfolio.security;
 
+import org.portfolio.services.ApplicationUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import java.util.concurrent.TimeUnit;
-
-import static org.portfolio.security.ApplicationUserRole.ADMIN;
-import static org.portfolio.security.ApplicationUserRole.GUEST;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
+    private UserDetailsService applicationUserDetailService;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder) {
+    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder, @Qualifier("App") UserDetailsService userDetailsService) {
         this.passwordEncoder = passwordEncoder;
+        this.applicationUserDetailService = userDetailsService;
     }
 
     @Override
@@ -50,24 +51,31 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID", "remember-me")
                 .logoutSuccessUrl("/login");
     }
-
     @Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
-        var userDetailsChris = User.builder()
-                .username("Chris")
-                .password(passwordEncoder.encode("admin"))
-//                .roles(ADMIN.name())
-                .authorities(ADMIN.getGrantedAuthorities())
-                .build();
-
-
-        var userDetailsGuest = User.builder()
-                .username("guest")
-                .password(passwordEncoder.encode("temp"))
-                .authorities(GUEST.getGrantedAuthorities())
-//                .roles(GUEST.name())
-                .build();
-        return new InMemoryUserDetailsManager(userDetailsChris, userDetailsGuest);
+    public AuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(applicationUserDetailService);
+        provider.setPasswordEncoder(passwordEncoder);
+        return provider;
     }
+//
+//    @Bean
+//    @Override
+//    protected UserDetailsService userDetailsService() {
+//        var userDetailsChris = User.builder()
+//                .username("Chris")
+//                .password(passwordEncoder.encode("admin"))
+////                .roles(ADMIN.name())
+//                .authorities(ADMIN.getGrantedAuthorities())
+//                .build();
+//
+//
+//        var userDetailsGuest = User.builder()
+//                .username("guest")
+//                .password(passwordEncoder.encode("temp"))
+//                .authorities(GUEST.getGrantedAuthorities())
+////                .roles(GUEST.name())
+//                .build();
+//        return new InMemoryUserDetailsManager(userDetailsChris, userDetailsGuest);
+//    }
 }
